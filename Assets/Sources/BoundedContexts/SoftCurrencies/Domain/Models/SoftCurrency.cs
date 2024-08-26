@@ -9,13 +9,14 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
         private readonly int _addedPercents;
         private readonly int _divider;
         private readonly int _modifier;
+        private readonly int _baseValue;
 
         private int _currentValue;
         private int _sumAddedValue;
-        
+
         public SoftCurrency(SoftCurrencyConfig config)
         {
-            BaseValue = config.BaseValue;
+            _baseValue = config.BaseValue;
             _modifier = config.Modifier;
             SumIncome = config.SumIncome;
             _divider = config.Divider;
@@ -27,11 +28,10 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
         public event Action ValueChanged;
         public event Action AddedValueChanged;
 
-        public int BaseValue { get; }
         public int SumIncome { get; }
         public int Delay { get; }
         public int CollectorAddedValue { get; }
-        public int CurrentAddedValue => (SumAddedValue + _modifier) / _divider;
+        public int CurrentAddedValue => (_baseValue + _modifier) / _divider + SumAddedValue;
 
         public int SumAddedValue
         {
@@ -65,9 +65,7 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
             SumAddedValue += CollectorAddedValue.GetValueFromPercent(_addedPercents);
         }
 
-        public void Increase()
-        {
+        public void Increase() =>
             CurrentValue += CurrentAddedValue;
-        }
     }
 }

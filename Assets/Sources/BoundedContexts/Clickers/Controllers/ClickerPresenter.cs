@@ -1,7 +1,9 @@
 using System;
 using System.Threading;
+using JetBrains.Annotations;
 using Sources.BoundedContexts.Clickers.Presentations.Interfaces;
 using Sources.BoundedContexts.Energies.Domain.Models;
+using Sources.BoundedContexts.SofCurrencyPopUps.Infrastructure.Factories.Views;
 using Sources.BoundedContexts.SofCurrencyPopUps.Presentation;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 using Sources.Frameworks.Controllers.Implementation;
@@ -15,6 +17,7 @@ namespace Sources.BoundedContexts.Clickers.Controllers
         private readonly Energy _energy;
         private readonly SoftCurrency _softCurrency;
         private readonly IClickerView _view;
+        private readonly SoftCurrencyPopUpViewFactory _softCurrencyPopUpViewFactory;
         private readonly SoftCurrencyPopUpView _prefab;
 
         private CancellationTokenSource _tokenSource;
@@ -22,12 +25,13 @@ namespace Sources.BoundedContexts.Clickers.Controllers
         public ClickerPresenter(
             Energy energy,
             SoftCurrency softCurrency,
-            IClickerView view)
+            IClickerView view,
+            SoftCurrencyPopUpViewFactory softCurrencyPopUpViewFactory)
         {
             _energy = energy ?? throw new ArgumentNullException(nameof(energy));
             _softCurrency = softCurrency ?? throw new ArgumentNullException(nameof(softCurrency));
             _view = view ?? throw new ArgumentNullException(nameof(view));
-            _prefab = Resources.Load<SoftCurrencyPopUpView>("Views/SoftCurrencyPopUp");
+            _softCurrencyPopUpViewFactory = softCurrencyPopUpViewFactory ?? throw new ArgumentNullException(nameof(softCurrencyPopUpViewFactory));
         }
 
         public override void Enable()
@@ -54,17 +58,21 @@ namespace Sources.BoundedContexts.Clickers.Controllers
                 return;
 
             _softCurrency.Increase();
-            ShowPopUp();
+            _softCurrencyPopUpViewFactory.Create(_softCurrency, _view);
+            // ShowPopUp();
         }
 
-        private void ShowPopUp()
-        {
-            SoftCurrencyPopUpView popUp = Object.Instantiate(
-                _prefab, _view.ClickButton.Position, Quaternion.identity);
-            popUp.SetParent(_view.Transform);
-            popUp.TextView.SetText(_softCurrency.CurrentAddedValue.ToString());
-            popUp.SetPoints(_view.PopUpMovePoints);
-            popUp.ShowPopUp();
-        }
+        // private void ShowPopUp()
+        // {
+        //     SoftCurrencyPopUpView popUp = Object.Instantiate(
+        //         _prefab, _view.ClickButton.Position, Quaternion.identity);
+        //     popUp.SetParent(_view.Transform);
+        //     popUp.TextView.SetText(_softCurrency.CurrentAddedValue.ToString());
+        //     popUp.SetPoints(_view.PopUpMovePoints);
+        //     var rect =popUp.Transform as RectTransform;
+        //     rect.sizeDelta = new Vector2(1, 1);
+        //     popUp.Show();
+        //     popUp.ShowPopUp();
+        // }
     }
 }

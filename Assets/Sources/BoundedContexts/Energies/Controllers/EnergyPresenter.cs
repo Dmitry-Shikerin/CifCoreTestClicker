@@ -35,7 +35,6 @@ namespace Sources.BoundedContexts.Energies.Controllers
             float value = _energy.Value
                 .IntToPercent(_energy.MaxValue)
                 .IntPercentToUnitPercent();
-            Debug.Log(value);
             
             _view.ImageView.SetFillAmount(value);
         }
