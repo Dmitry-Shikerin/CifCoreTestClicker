@@ -1,6 +1,5 @@
 using System;
 using Sources.BoundedContexts.Energies.Controllers;
-using Sources.BoundedContexts.Energies.Domain;
 using Sources.BoundedContexts.Energies.Domain.Models;
 using Sources.BoundedContexts.Energies.Infrastructures.Factories.Controllers;
 using Sources.BoundedContexts.Energies.Presentation.Implementation;

@@ -1,6 +1,7 @@
 using Sources.BoundedContexts.Energies.Controllers;
 using Sources.BoundedContexts.Energies.Presentation.Interfaces;
 using Sources.Frameworks.Presentation;
+using Sources.Frameworks.Presentation.Base.Implementation;
 using Sources.Frameworks.Presentation.Components.Images.Implementation;
 using Sources.Frameworks.Presentation.Components.Images.Interfaces;
 using UnityEngine;

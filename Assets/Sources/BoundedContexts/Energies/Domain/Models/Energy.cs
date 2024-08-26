@@ -5,20 +5,21 @@ namespace Sources.BoundedContexts.Energies.Domain.Models
 {
     public class Energy
     {
+        private readonly int _energyForTap;
+        
         private int _value;
 
         public Energy(EnergyConfig energyConfig)
         {
             MaxValue = energyConfig.MaxValue;
             Value = MaxValue;
-            EnergyForTap = energyConfig.EnergyForTap;
+            _energyForTap = energyConfig.EnergyForTap;
         }
 
         public event Action ValueChanged;
-        
+
         public int MaxValue { get; }
-        public int EnergyForTap { get; }
-        
+
         public int Value
         {
             get => _value;
@@ -34,10 +35,10 @@ namespace Sources.BoundedContexts.Energies.Domain.Models
 
         public bool TryTap()
         {
-            if (_value < EnergyForTap)
+            if (_value < _energyForTap)
                 return false;
 
-            Value -= EnergyForTap;
+            Value -= _energyForTap;
             
             return true;
         }

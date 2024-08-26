@@ -32,10 +32,8 @@ namespace Sources.BoundedContexts.AutoCollectors.Controllers
             StartCollector();
         }
 
-        public override void Disable()
-        { 
+        public override void Disable() =>
             _tokenSource.Cancel();
-        }
 
         private async void StartCollector()
         {

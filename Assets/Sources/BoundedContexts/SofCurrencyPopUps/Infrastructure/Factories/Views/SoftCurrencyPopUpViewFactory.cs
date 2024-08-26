@@ -1,9 +1,7 @@
 using System;
-using JetBrains.Annotations;
 using Sources.BoundedContexts.Clickers.Presentations.Interfaces;
 using Sources.BoundedContexts.SofCurrencyPopUps.Presentation;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
-using Sources.BoundedContexts.SoftCurrencies.Presentation.Implementation;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

@@ -1,3 +1,5 @@
+using Sources.Frameworks.Controllers.Interfaces;
+
 namespace Sources.Frameworks.Controllers.Implementation
 {
     public class PresenterBase : IPresenter

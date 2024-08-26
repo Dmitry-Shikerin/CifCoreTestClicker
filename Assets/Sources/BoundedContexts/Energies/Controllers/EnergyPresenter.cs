@@ -3,7 +3,6 @@ using Sources.BoundedContexts.Energies.Domain.Models;
 using Sources.BoundedContexts.Energies.Presentation.Interfaces;
 using Sources.Frameworks.Controllers.Implementation;
 using Sources.Frameworks.Utils;
-using UnityEngine;
 
 namespace Sources.BoundedContexts.Energies.Controllers
 {
@@ -20,15 +19,11 @@ namespace Sources.BoundedContexts.Energies.Controllers
             _view = view ?? throw new ArgumentNullException(nameof(view));
         }
 
-        public override void Enable()
-        {
+        public override void Enable() =>
             _energy.ValueChanged += OnValueChanged;
-        }
 
-        public override void Disable()
-        {
+        public override void Disable() =>
             _energy.ValueChanged -= OnValueChanged;
-        }
 
         private void OnValueChanged()
         {

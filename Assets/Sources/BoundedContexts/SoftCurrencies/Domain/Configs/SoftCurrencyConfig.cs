@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Sources.BoundedContexts.SoftCurrencies.Domain.Configs
 {

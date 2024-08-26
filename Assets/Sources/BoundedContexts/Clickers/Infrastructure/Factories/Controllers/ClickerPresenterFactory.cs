@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using Sources.BoundedContexts.Clickers.Controllers;
 using Sources.BoundedContexts.Clickers.Presentations.Interfaces;
 using Sources.BoundedContexts.Energies.Domain.Models;
@@ -18,12 +17,7 @@ namespace Sources.BoundedContexts.Clickers.Infrastructure.Factories.Controllers
                                             throw new ArgumentNullException(nameof(softCurrencyPopUpViewFactory));
         }
 
-        public ClickerPresenter Create(
-            Energy energy,
-            SoftCurrency softCurrency,
-            IClickerView view)
-        {
-            return new ClickerPresenter(energy, softCurrency, view, _softCurrencyPopUpViewFactory);
-        }
+        public ClickerPresenter Create(Energy energy, SoftCurrency softCurrency, IClickerView view) =>
+            new (energy, softCurrency, view, _softCurrencyPopUpViewFactory);
     }
 }

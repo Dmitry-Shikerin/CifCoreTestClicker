@@ -1,14 +1,11 @@
 using System;
 using System.Threading;
-using JetBrains.Annotations;
 using Sources.BoundedContexts.Clickers.Presentations.Interfaces;
 using Sources.BoundedContexts.Energies.Domain.Models;
 using Sources.BoundedContexts.SofCurrencyPopUps.Infrastructure.Factories.Views;
 using Sources.BoundedContexts.SofCurrencyPopUps.Presentation;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 using Sources.Frameworks.Controllers.Implementation;
-using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Sources.BoundedContexts.Clickers.Controllers
 {
@@ -59,20 +56,6 @@ namespace Sources.BoundedContexts.Clickers.Controllers
 
             _softCurrency.Increase();
             _softCurrencyPopUpViewFactory.Create(_softCurrency, _view);
-            // ShowPopUp();
         }
-
-        // private void ShowPopUp()
-        // {
-        //     SoftCurrencyPopUpView popUp = Object.Instantiate(
-        //         _prefab, _view.ClickButton.Position, Quaternion.identity);
-        //     popUp.SetParent(_view.Transform);
-        //     popUp.TextView.SetText(_softCurrency.CurrentAddedValue.ToString());
-        //     popUp.SetPoints(_view.PopUpMovePoints);
-        //     var rect =popUp.Transform as RectTransform;
-        //     rect.sizeDelta = new Vector2(1, 1);
-        //     popUp.Show();
-        //     popUp.ShowPopUp();
-        // }
     }
 }

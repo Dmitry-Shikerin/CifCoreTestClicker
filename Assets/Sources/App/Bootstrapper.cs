@@ -8,6 +8,7 @@ using Sources.BoundedContexts.Energies.Domain.Models;
 using Sources.BoundedContexts.Energies.Infrastructures.Factories.Controllers;
 using Sources.BoundedContexts.Energies.Infrastructures.Factories.Views;
 using Sources.BoundedContexts.Huds.Presentation;
+using Sources.BoundedContexts.Prefabs.Domain;
 using Sources.BoundedContexts.SofCurrencyPopUps.Infrastructure.Factories.Views;
 using Sources.BoundedContexts.SofCurrencyPopUps.Presentation;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Configs;
@@ -25,39 +26,34 @@ namespace Sources.App
         private async void Start()
         {
             SoftCurrencyConfig config = await Resources.LoadAsync<SoftCurrencyConfig>(
-                "Currencies/SoftCurrencyConfig") as SoftCurrencyConfig;
+                PrefabPath.SoftCurrencyConfig) as SoftCurrencyConfig;
             EnergyConfig energyConfig = await Resources.LoadAsync<EnergyConfig>(
-                "Energies/EnergyConfig") as EnergyConfig;
+                PrefabPath.EnergyConfig) as EnergyConfig;
             SoftCurrencyPopUpView softCurrencyPopUpView = 
-                Resources.LoadAsync<SoftCurrencyPopUpView>("Views/SoftCurrencyPopUp")
+                Resources.LoadAsync<SoftCurrencyPopUpView>(PrefabPath.SoftCurrencyPopUp)
                     .asset as SoftCurrencyPopUpView;
-
             
             SoftCurrency softCurrency = new SoftCurrency(config);
             Energy energy = new Energy(energyConfig);
             
-            //PopUp
             SoftCurrencyPopUpViewFactory softCurrencyPopUpViewFactory = 
                 new SoftCurrencyPopUpViewFactory(softCurrencyPopUpView);
             
-            //Clicker
-            ClickerPresenterFactory clickerPresenterFactory = new ClickerPresenterFactory(softCurrencyPopUpViewFactory);
+            ClickerPresenterFactory clickerPresenterFactory = 
+                new ClickerPresenterFactory(softCurrencyPopUpViewFactory);
             ClickerViewFactory clickerViewFactory = new ClickerViewFactory(clickerPresenterFactory);
             clickerViewFactory.Create(energy, softCurrency, _hudView.ClickerView);
             
-            //Collector
             CurrencyAutoCollectorPresenterFactory currencyAutoCollectorPresenterFactory = 
                 new CurrencyAutoCollectorPresenterFactory();
             CurrencyCollectorViewFactory currencyCollectorViewFactory = 
                 new CurrencyCollectorViewFactory(currencyAutoCollectorPresenterFactory);
             currencyCollectorViewFactory.Create(softCurrency, _hudView.CurrencyCollectorView);
             
-            //Energy
             EnergyPresenterFactory energyPresenterFactory = new EnergyPresenterFactory();
             EnergyViewFactory energyViewFactory = new EnergyViewFactory(energyPresenterFactory);
             energyViewFactory.Create(energy, _hudView.EnergyView);
             
-            //SoftCurrrency
             SoftCurrencyPresenterFactory softCurrencyPresenterFactory = new SoftCurrencyPresenterFactory();
             SoftCurrencyViewFactory softCurrencyViewFactory = 
                 new SoftCurrencyViewFactory(softCurrencyPresenterFactory);

@@ -6,9 +6,7 @@ namespace Sources.BoundedContexts.SoftCurrencies.Infrastructure.Factories.Contro
 {
     public class SoftCurrencyPresenterFactory
     {
-        public SoftCurrencyPresenter Create(SoftCurrency softCurrency, ISoftCurrencyView view)
-        {
-            return new SoftCurrencyPresenter(softCurrency, view);
-        }
+        public SoftCurrencyPresenter Create(SoftCurrency softCurrency, ISoftCurrencyView view) =>
+            new (softCurrency, view);
     }
 }

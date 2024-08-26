@@ -1,8 +1,7 @@
 using System;
-using Sources.Frameworks.Controllers;
-using Sources.Frameworks.Presentation.Base.Implementation;
+using Sources.Frameworks.Controllers.Interfaces;
 
-namespace Sources.Frameworks.Presentation
+namespace Sources.Frameworks.Presentation.Base.Implementation
 {
     public class PresentableView<T> : View 
         where T : IPresenter

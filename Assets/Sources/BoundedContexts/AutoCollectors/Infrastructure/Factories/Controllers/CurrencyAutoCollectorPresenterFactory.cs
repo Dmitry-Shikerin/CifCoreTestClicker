@@ -6,11 +6,7 @@ namespace Sources.BoundedContexts.AutoCollectors.Infrastructure.Factories.Contro
 {
     public class CurrencyAutoCollectorPresenterFactory
     {
-        public CurrencyAutoCollectorPresenter Create(
-            SoftCurrency softCurrency,
-            ICurrencyCollectorView view)
-        {
-            return new CurrencyAutoCollectorPresenter(softCurrency, view);
-        }
+        public CurrencyAutoCollectorPresenter Create(SoftCurrency softCurrency, ICurrencyCollectorView view) =>
+            new (softCurrency, view);
     }
 }

@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Sources.Frameworks.Presentation.Components
+namespace Sources.Frameworks.Presentation.Components.Buttons.Interfaces
 {
     public interface IButtonView
     {
