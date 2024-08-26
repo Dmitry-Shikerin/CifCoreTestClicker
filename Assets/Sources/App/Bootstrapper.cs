@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using Sources.BoundedContexts.AutoCollectors.Domain;
+using Sources.BoundedContexts.Clickers.Infrastructure.Factories.Controllers;
+using Sources.BoundedContexts.Clickers.Infrastructure.Factories.Views;
+using Sources.BoundedContexts.Huds.Presentation;
+using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 using UnityEngine;
 
-public class Bootstrapper : MonoBehaviour
+namespace Sources.App
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Bootstrapper : MonoBehaviour
     {
+        [SerializeField] private HudView _hudView;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            SoftCurrency softCurrency = new SoftCurrency();
+            CurrencyCollector currencyCollector = new CurrencyCollector();
+            
+            ClickerPresenterFactory clickerPresenterFactory = new ClickerPresenterFactory();
+            ClickerViewFactory clickerViewFactory = new ClickerViewFactory(clickerPresenterFactory);
+            clickerViewFactory.Create(currencyCollector, softCurrency, _hudView.ClickerView);
+        }
     }
 }
