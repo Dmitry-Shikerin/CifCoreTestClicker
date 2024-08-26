@@ -1,14 +1,15 @@
 using System;
+using Sources.BoundedContexts.Energies.Domain.Configs;
 
-namespace Sources.BoundedContexts.Energies.Domain
+namespace Sources.BoundedContexts.Energies.Domain.Models
 {
     public class Energy
     {
         private int _value;
 
-        public Energy(int maxValue)
+        public Energy(EnergyConfig energyConfig)
         {
-            MaxValue = maxValue;
+            MaxValue = energyConfig.MaxValue;
         }
 
         public event Action ValueChanged;
