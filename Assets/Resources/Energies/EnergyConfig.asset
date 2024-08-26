@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7dcb5e4a0a4a2799c63fdad8f9c5b0, type: 3}
   m_Name: EnergyConfig
   m_EditorClassIdentifier: 
-  _maxValue: 0
+  _maxValue: 100
+  _energyForTap: 10

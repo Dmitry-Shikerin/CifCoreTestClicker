@@ -1,9 +1,9 @@
 using System;
 using Sources.BoundedContexts.AutoCollectors.Controllers;
-using Sources.BoundedContexts.AutoCollectors.Domain;
 using Sources.BoundedContexts.AutoCollectors.Infrastructure.Factories.Controllers;
 using Sources.BoundedContexts.AutoCollectors.Presentation.Implementation;
 using Sources.BoundedContexts.AutoCollectors.Presentation.Interfaces;
+using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 
 namespace Sources.BoundedContexts.AutoCollectors.Infrastructure.Factories.Views
 {
@@ -17,10 +17,10 @@ namespace Sources.BoundedContexts.AutoCollectors.Infrastructure.Factories.Views
         }
         
         public ICurrencyCollectorView Create(
-            CurrencyCollector currencyCollector, 
+            SoftCurrency softCurrency, 
             CurrencyCollectorView view)
         {
-            CurrencyAutoCollectorPresenter presenter = _presenterFactory.Create(currencyCollector, view);
+            CurrencyAutoCollectorPresenter presenter = _presenterFactory.Create(softCurrency, view);
             view.Construct(presenter);
             
             return view;

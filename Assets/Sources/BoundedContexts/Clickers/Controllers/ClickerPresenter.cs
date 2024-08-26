@@ -1,25 +1,23 @@
 using System;
-using JetBrains.Annotations;
-using Sources.BoundedContexts.AutoCollectors.Domain;
 using Sources.BoundedContexts.Clickers.Presentations.Interfaces;
+using Sources.BoundedContexts.Energies.Domain.Models;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 using Sources.Frameworks.Controllers.Implementation;
-using UnityEngine;
 
 namespace Sources.BoundedContexts.Clickers.Controllers
 {
     public class ClickerPresenter : PresenterBase
     {
-        private readonly CurrencyCollector _currencyCollector;
+        private readonly Energy _energy;
         private readonly SoftCurrency _softCurrency;
         private readonly IClickerView _view;
 
         public ClickerPresenter(
-            CurrencyCollector currencyCollector,
-            SoftCurrency softCurrency, 
+            Energy energy,
+            SoftCurrency softCurrency,
             IClickerView view)
         {
-            _currencyCollector = currencyCollector ?? throw new ArgumentNullException(nameof(currencyCollector));
+            _energy = energy ?? throw new ArgumentNullException(nameof(energy));
             _softCurrency = softCurrency ?? throw new ArgumentNullException(nameof(softCurrency));
             _view = view ?? throw new ArgumentNullException(nameof(view));
         }
@@ -32,7 +30,10 @@ namespace Sources.BoundedContexts.Clickers.Controllers
 
         private void OnClick()
         {
-            Debug.Log($"Increase");
+            if (_energy.TryTap() == false)
+                return;
+            
+            _softCurrency.Increase();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
 
         public void Increase()
         {
-            
+            CurrentValue += AddedValue;
         }
     }
 }

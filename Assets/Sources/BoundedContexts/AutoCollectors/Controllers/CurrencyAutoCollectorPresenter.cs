@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Sources.BoundedContexts.AutoCollectors.Domain;
 using Sources.BoundedContexts.AutoCollectors.Presentation.Interfaces;
+using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 using Sources.Frameworks.Controllers.Implementation;
 using UnityEngine;
 
@@ -10,24 +10,24 @@ namespace Sources.BoundedContexts.AutoCollectors.Controllers
 {
     public class CurrencyAutoCollectorPresenter : PresenterBase
     {
-        private readonly CurrencyCollector _currencyCollector;
+        private readonly SoftCurrency _softCurrency;
         private readonly ICurrencyCollectorView _view;
 
         private CancellationTokenSource _tokenSource;
         private TimeSpan _delay;
 
         public CurrencyAutoCollectorPresenter(
-            CurrencyCollector currencyCollector,
+            SoftCurrency softCurrency,
             ICurrencyCollectorView view)
         {
-            _currencyCollector = currencyCollector ?? throw new ArgumentNullException(nameof(currencyCollector));
+            _softCurrency = softCurrency ?? throw new ArgumentNullException(nameof(softCurrency));
             _view = view ?? throw new ArgumentNullException(nameof(view));
         }
 
         public override void Enable()
         {
             _tokenSource = new CancellationTokenSource();
-            _delay = TimeSpan.FromSeconds(1);
+            _delay = TimeSpan.FromSeconds(_softCurrency.Delay);
             StartCollector();
         }
 

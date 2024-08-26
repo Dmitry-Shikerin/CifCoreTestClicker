@@ -1,16 +1,16 @@
 using Sources.BoundedContexts.AutoCollectors.Controllers;
-using Sources.BoundedContexts.AutoCollectors.Domain;
 using Sources.BoundedContexts.AutoCollectors.Presentation.Interfaces;
+using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 
 namespace Sources.BoundedContexts.AutoCollectors.Infrastructure.Factories.Controllers
 {
     public class CurrencyAutoCollectorPresenterFactory
     {
         public CurrencyAutoCollectorPresenter Create(
-            CurrencyCollector currencyCollector,
+            SoftCurrency softCurrency,
             ICurrencyCollectorView view)
         {
-            return new CurrencyAutoCollectorPresenter(currencyCollector, view);
+            return new CurrencyAutoCollectorPresenter(softCurrency, view);
         }
     }
 }

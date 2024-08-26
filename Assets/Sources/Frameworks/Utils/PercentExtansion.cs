@@ -21,9 +21,9 @@ namespace Sources.Frameworks.Utils
             (int)FloatToPercent((int)value, (int)max);
 
         public static float FloatPercentToUnitPercent(this float value) =>
-            value * 1;
+            value * 0.01f;
         
         public static float IntPercentToUnitPercent(this int value) =>
-            value * 1;
+            value * 0.01f;
     }
 }

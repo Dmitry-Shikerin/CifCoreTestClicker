@@ -1,9 +1,9 @@
 using System;
-using Sources.BoundedContexts.Energies.Domain;
 using Sources.BoundedContexts.Energies.Domain.Models;
 using Sources.BoundedContexts.Energies.Presentation.Interfaces;
 using Sources.Frameworks.Controllers.Implementation;
 using Sources.Frameworks.Utils;
+using UnityEngine;
 
 namespace Sources.BoundedContexts.Energies.Controllers
 {
@@ -35,6 +35,7 @@ namespace Sources.BoundedContexts.Energies.Controllers
             float value = _energy.Value
                 .IntToPercent(_energy.MaxValue)
                 .IntPercentToUnitPercent();
+            Debug.Log(value);
             
             _view.ImageView.SetFillAmount(value);
         }
