@@ -17,4 +17,5 @@ MonoBehaviour:
   _sumIncome: 1
   _divider: 1
   _delay: 1
-  _addedValue: 1
+  _collectorAddedValue: 10
+  _addedPercents: 10

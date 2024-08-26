@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace Sources.Frameworks.Utils
 {
     public static class PercentExtansion
@@ -16,7 +19,10 @@ namespace Sources.Frameworks.Utils
 
             return currentPercents;
         }
-        
+
+        public static int GetValueFromPercent(this int value, int percents) =>
+            (int)Math.Round((double)(value * percents / 100));
+
         public static int IntToPercent(this int value, int max) =>
             (int)FloatToPercent((int)value, (int)max);
 

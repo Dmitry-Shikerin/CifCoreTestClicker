@@ -22,11 +22,21 @@ namespace Sources.BoundedContexts.Clickers.Controllers
             _view = view ?? throw new ArgumentNullException(nameof(view));
         }
 
-        public override void Enable() =>
+        public override void Enable()
+        {
             _view.ClickButton.AddClickListener(OnClick);
+            OnAddedValueChanged();
+            _softCurrency.AddedValueChanged += OnAddedValueChanged;
+        }
 
-        public override void Disable() =>
+        public override void Disable()
+        {
             _view.ClickButton.RemoveClickListener(OnClick);
+            _softCurrency.AddedValueChanged -= OnAddedValueChanged;
+        }
+
+        private void OnAddedValueChanged() =>
+            _view.AddedCurrencyText.SetText(_softCurrency.SumAddedValue.ToString());
 
         private void OnClick()
         {

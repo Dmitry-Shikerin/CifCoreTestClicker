@@ -4,7 +4,6 @@ using Cysharp.Threading.Tasks;
 using Sources.BoundedContexts.AutoCollectors.Presentation.Interfaces;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Models;
 using Sources.Frameworks.Controllers.Implementation;
-using UnityEngine;
 
 namespace Sources.BoundedContexts.AutoCollectors.Controllers
 {
@@ -28,6 +27,8 @@ namespace Sources.BoundedContexts.AutoCollectors.Controllers
         {
             _tokenSource = new CancellationTokenSource();
             _delay = TimeSpan.FromSeconds(_softCurrency.Delay);
+            _view.DelayText.SetText(_softCurrency.Delay.ToString());
+            _view.AmountText.SetText(_softCurrency.CollectorAddedValue.ToString());
             StartCollector();
         }
 
@@ -43,7 +44,7 @@ namespace Sources.BoundedContexts.AutoCollectors.Controllers
                 while (_tokenSource.IsCancellationRequested == false)
                 {
                     await UniTask.Delay(_delay, cancellationToken: _tokenSource.Token);
-                    Debug.Log($"Add currency");
+                    _softCurrency.Collect();
                 }
             }
             catch (OperationCanceledException)

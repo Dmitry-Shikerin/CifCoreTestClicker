@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.BoundedContexts.SoftCurrencies.Domain.Configs
 {
@@ -13,7 +14,8 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Configs
         
         [Header("Auto Collect")]
         [SerializeField] private int _delay = 1;
-        [SerializeField] private int _addedValue = 1;
+        [SerializeField] private int _collectorAddedValue = 1;
+        [SerializeField] private int _addedPercents = 10;
         
         public int BaseValue => _baseValue;
         public int Modifier => _modifier;
@@ -21,6 +23,7 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Configs
         public int Divider => _divider;
         
         public int Delay => _delay;
-        public int AddedValue => _addedValue;
+        public int CollectorAddedValue => _collectorAddedValue;
+        public int AddedPercents => _addedPercents;
     }
 }
