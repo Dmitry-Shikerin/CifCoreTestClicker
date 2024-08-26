@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sources.BoundedContexts.Clickers.Controllers;
 using Sources.BoundedContexts.Clickers.Presentations.Interfaces;
 using Sources.Frameworks.Presentation;
@@ -13,7 +14,9 @@ namespace Sources.BoundedContexts.Clickers.Presentations.Implementation
     {
         [SerializeField] private TextView _addedCurrencyText;
         [SerializeField] private ButtonView _clickButton;
+        [SerializeField] private List<Transform> _popUpMovePoints;
 
+        public IReadOnlyList<Transform> PopUpMovePoints => _popUpMovePoints;
         public ITextView AddedCurrencyText => _addedCurrencyText;
         public IButtonView ClickButton => _clickButton;
     }

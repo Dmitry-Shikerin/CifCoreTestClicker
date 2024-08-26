@@ -1,7 +1,6 @@
 using System;
 using Sources.BoundedContexts.SoftCurrencies.Domain.Configs;
 using Sources.Frameworks.Utils;
-using UnityEngine;
 
 namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
 {
@@ -32,6 +31,7 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
         public int SumIncome { get; }
         public int Delay { get; }
         public int CollectorAddedValue { get; }
+        public int CurrentAddedValue => (SumAddedValue + _modifier) / _divider;
 
         public int SumAddedValue
         {
@@ -62,14 +62,12 @@ namespace Sources.BoundedContexts.SoftCurrencies.Domain.Models
         public void Collect()
         {
             CurrentValue += CollectorAddedValue;
-            int percent = CollectorAddedValue.GetValueFromPercent(_addedPercents);
-            Debug.Log(percent);
-            SumAddedValue += percent;
+            SumAddedValue += CollectorAddedValue.GetValueFromPercent(_addedPercents);
         }
 
         public void Increase()
         {
-            CurrentValue += (CollectorAddedValue + _modifier) / _divider;
+            CurrentValue += CurrentAddedValue;
         }
     }
 }

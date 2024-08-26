@@ -3,6 +3,7 @@ using Sources.BoundedContexts.Clickers.Presentations.Implementation;
 using Sources.BoundedContexts.Energies.Presentation.Implementation;
 using Sources.BoundedContexts.SoftCurrencies.Presentation.Implementation;
 using Sources.Frameworks.Presentation;
+using Sources.Frameworks.Presentation.Base.Implementation;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Huds.Presentation
